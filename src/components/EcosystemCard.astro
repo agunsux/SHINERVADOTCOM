@@ -1,21 +1,25 @@
 ---
 interface Props {
+  index?: number;
   name: string;
   tagline: string;
   descriptor: string;
   body: string;
   url: string;
   ctaText: string;
-  ariaLabel: string;
+  ariaLabel?: string;
 }
 
-const { name, tagline, descriptor, body, url, ctaText, ariaLabel } = Astro.props;
+const { index = 0, name, tagline, descriptor, body, url, ctaText } = Astro.props;
+const staggerDelay = index * 80;
 ---
 
 <a
   href={url}
   target="_blank"
   rel="noopener"
+  data-fade-up
+  style={`transition-delay: ${staggerDelay}ms;`}
   class="group relative flex flex-col justify-between h-full p-8 rounded-[24px] bg-[var(--canvas)] border border-[var(--line)] hover:border-[var(--terracotta)]/40 hover:-translate-y-1 transition-all duration-250 ease-out focus-visible:outline-none"
 >
   <!-- Card Content -->

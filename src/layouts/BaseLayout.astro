@@ -94,20 +94,26 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://shinerva.com');
       <slot />
     </main>
 
-    <!-- Fade-up IntersectionObserver (16px, 600ms, once) -->
+    <!-- Scroll Animations IntersectionObserver (600ms/800ms, once) -->
     <script>
-      const setupFadeUp = () => {
+      const setupScrollAnimations = () => {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-        const targets = document.querySelectorAll('[data-fade-up]');
         if (!('IntersectionObserver' in window)) return;
+
+        const fadeTargets = document.querySelectorAll('[data-fade-up]');
+        const wordmarkTargets = document.querySelectorAll('[data-fade-wordmark]');
 
         const observer = new IntersectionObserver(
           (entries, obs) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                entry.target.classList.add('fade-up-visible');
-                entry.target.classList.remove('fade-up-init');
+                if (entry.target.hasAttribute('data-fade-wordmark')) {
+                  entry.target.classList.add('wordmark-reveal-visible');
+                  entry.target.classList.remove('wordmark-reveal-init');
+                } else {
+                  entry.target.classList.add('fade-up-visible');
+                  entry.target.classList.remove('fade-up-init');
+                }
                 obs.unobserve(entry.target);
               }
             });
@@ -115,7 +121,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://shinerva.com');
           { threshold: 0.02, rootMargin: '0px 0px 100px 0px' }
         );
 
-        targets.forEach((el) => {
+        fadeTargets.forEach((el) => {
           const rect = el.getBoundingClientRect();
           if (rect.top < window.innerHeight) {
             el.classList.add('fade-up-visible');
@@ -125,19 +131,33 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://shinerva.com');
           }
         });
 
+        wordmarkTargets.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight) {
+            el.classList.add('wordmark-reveal-visible');
+          } else {
+            el.classList.add('wordmark-reveal-init');
+            observer.observe(el);
+          }
+        });
+
         // Fail-safe to guarantee content is never permanently hidden
         setTimeout(() => {
-          targets.forEach((el) => {
+          fadeTargets.forEach((el) => {
             el.classList.add('fade-up-visible');
             el.classList.remove('fade-up-init');
+          });
+          wordmarkTargets.forEach((el) => {
+            el.classList.add('wordmark-reveal-visible');
+            el.classList.remove('wordmark-reveal-init');
           });
         }, 1500);
       };
 
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setupFadeUp);
+        document.addEventListener('DOMContentLoaded', setupScrollAnimations);
       } else {
-        setupFadeUp();
+        setupScrollAnimations();
       }
     </script>
   </body>

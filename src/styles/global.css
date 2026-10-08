@@ -91,12 +91,31 @@ h1, h2, h3, .heading-display {
   color: transparent;
 }
 
-/* Orbit visual rotation */
-.hero-orbit-spin {
-  animation: heroOrbit 180s linear infinite;
-  transform-origin: center;
+/* Hero Entrance Sequence (500–700ms, natural ease-out, staggered ~90ms) */
+@keyframes heroEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+.hero-enter {
+  opacity: 0;
+  animation: heroEntrance 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+.hero-enter-1 { animation-delay: 0ms; }
+.hero-enter-2 { animation-delay: 90ms; }
+.hero-enter-3 { animation-delay: 180ms; }
+.hero-enter-4 { animation-delay: 270ms; }
+.hero-enter-5 { animation-delay: 360ms; }
+
+/* Hero Living System: Orbital continuous rotation (24s) & Central subtle breathing (6s) */
 @keyframes heroOrbit {
   from {
     transform: rotate(0deg);
@@ -106,28 +125,98 @@ h1, h2, h3, .heading-display {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-orbit-spin {
-    animation: none;
+@keyframes heroBreathe {
+  0%, 100% {
+    opacity: 0.90;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
   }
 }
 
-/* Fade-up reveal (600ms, 16px) */
+.hero-orbit-spin {
+  animation: heroOrbit 24s linear infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.hero-center-breathe {
+  animation: heroBreathe 6s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+/* Fade-up reveal (600ms, 20px) */
 .fade-up-init {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(20px);
   transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .fade-up-visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Closing Wordmark Reveal (0.35 -> 1.0, 12px) */
+.wordmark-reveal-init {
+  opacity: 0.35;
+  transform: translateY(12px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.wordmark-reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* FAQ Answer Subtle Opening */
+details[open] .faq-answer {
+  animation: faqAnswerFade 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes faqAnswerFade {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navigation Scroll State */
+#nav-pill-bar {
+  transition: background-color 250ms ease-out, border-color 250ms ease-out, box-shadow 250ms ease-out;
+}
+
+#nav-pill-bar.nav-pill-scrolled {
+  background-color: color-mix(in srgb, var(--canvas) 96%, transparent);
+  border-color: color-mix(in srgb, var(--ink) 12%, var(--line));
+  box-shadow: 0 10px 36px rgba(26, 22, 18, 0.11);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-up-init {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .hero-enter,
+  .hero-enter-1,
+  .hero-enter-2,
+  .hero-enter-3,
+  .hero-enter-4,
+  .hero-enter-5,
+  .hero-orbit-spin,
+  .hero-center-breathe,
+  .fade-up-init,
+  .wordmark-reveal-init,
+  details[open] .faq-answer,
+  #nav-pill-bar {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

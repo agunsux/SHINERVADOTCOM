@@ -66,6 +66,7 @@ async function run() {
   });
 
   const targets = [
+    { name: 'shinerva-375.png', width: 375, height: 667 },
     { name: 'shinerva-390.png', width: 390, height: 844 },
     { name: 'shinerva-768.png', width: 768, height: 1024 },
     { name: 'shinerva-1440.png', width: 1440, height: 900 },
@@ -116,6 +117,10 @@ async function run() {
         el.classList.add('fade-up-visible');
         el.classList.remove('fade-up-init');
       });
+      document.querySelectorAll('[data-fade-wordmark]').forEach((el) => {
+        el.classList.add('wordmark-reveal-visible');
+        el.classList.remove('wordmark-reveal-init');
+      });
     });
     await page.waitForTimeout(300);
 
@@ -132,24 +137,10 @@ async function run() {
     await page.close();
   }
 
-  // Also check 375px specifically for mobile safety
-  const page375 = await browser.newPage({
-    viewport: { width: 375, height: 667 },
-  });
-  await page375.goto('http://localhost:4321', { waitUntil: 'networkidle' });
-  const overflow375 = await page375.evaluate(() => {
-    return {
-      hasOverflow: document.documentElement.scrollWidth > window.innerWidth,
-      scrollWidth: document.documentElement.scrollWidth,
-      innerWidth: window.innerWidth,
-    };
-  });
-  await page375.close();
-
   await browser.close();
   server.close();
 
-  console.log('RESULTS:', JSON.stringify({ results, overflow375 }, null, 2));
+  console.log('RESULTS:', JSON.stringify({ results }, null, 2));
 }
 
 run().catch((err) => {

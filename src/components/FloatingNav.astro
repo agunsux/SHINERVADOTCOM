@@ -14,6 +14,7 @@ const navLinks = [
 >
   <!-- Floating Pill Bar -->
   <div
+    id="nav-pill-bar"
     class="w-full h-14 sm:h-16 px-4 sm:px-6 rounded-full bg-[var(--canvas)]/90 backdrop-blur-md border border-[var(--line)] shadow-[0_8px_30px_rgba(26,22,18,0.08)] flex items-center justify-between"
   >
     <!-- Left: Brand Logo Lockup -->
@@ -140,12 +141,20 @@ const navLinks = [
   toggleBtn?.addEventListener('click', () => setOpen(!isOpen));
   mobileLinks.forEach((l) => l.addEventListener('click', () => setOpen(false)));
 
-  // Scrollspy active indicator
+  // Scrollspy & Nav scroll state
   const setupScrollspy = () => {
     const sections = ['ecosystem', 'about', 'faq'];
     const pillLinks = document.querySelectorAll<HTMLElement>('.nav-pill-link');
+    const navBar = document.getElementById('nav-pill-bar');
 
     const onScroll = () => {
+      // Subtle nav background/border transition on scroll
+      if (window.scrollY > 30) {
+        navBar?.classList.add('nav-pill-scrolled');
+      } else {
+        navBar?.classList.remove('nav-pill-scrolled');
+      }
+
       const scrollPos = window.scrollY + 250;
       let active = '';
 
