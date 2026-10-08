@@ -1,0 +1,61 @@
+---
+import EcosystemCard from './EcosystemCard.astro';
+
+const products = [
+  {
+    index: '01',
+    name: 'Shinerva.id',
+    category: 'AI & Creative Technology',
+    description: 'AI voice technology and digital products for creators, businesses, and the Indonesian market.',
+    url: 'https://shinerva.id',
+    ctaText: 'Visit shinerva.id',
+  },
+  {
+    index: '02',
+    name: 'Tikum.app',
+    category: 'Digital Marketplace',
+    description: 'A digital marketplace built around useful products, services, and everyday technology.',
+    url: 'https://tikum.app',
+    ctaText: 'Visit tikum.app',
+  },
+  {
+    index: '03',
+    name: 'Salmo.dev',
+    category: 'Sports Data & Intelligence',
+    description: 'A football data and research platform turning sports data into better decisions.',
+    supportingLine: 'Built on the HandicapLab research and data foundation.',
+    url: 'https://salmo.dev',
+    ctaText: 'Visit salmo.dev',
+  },
+];
+---
+
+<section id="ecosystem" class="py-20 lg:py-28 border-t border-[var(--color-border-hairline)]">
+  <div class="flex flex-col gap-12 lg:gap-16">
+    <!-- Section Header -->
+    <div class="flex flex-col gap-4 max-w-2xl">
+      <span class="text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)]">
+        Our Ecosystem
+      </span>
+      <h2 class="text-[32px] sm:text-[40px] md:text-[46px] font-medium leading-[1.12] tracking-[-0.03em] text-[var(--color-text-primary)]">
+        Three businesses.
+        <span class="block text-[var(--color-text-secondary)] font-normal">One ecosystem.</span>
+      </h2>
+    </div>
+
+    <!-- Product Grid / Editorial Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-6">
+      {products.map((item) => (
+        <EcosystemCard
+          index={item.index}
+          name={item.name}
+          category={item.category}
+          description={item.description}
+          supportingLine={item.supportingLine}
+          url={item.url}
+          ctaText={item.ctaText}
+        />
+      ))}
+    </div>
+  </div>
+</section>

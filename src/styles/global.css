@@ -1,0 +1,85 @@
+@import "@fontsource-variable/plus-jakarta-sans";
+@import "tailwindcss";
+
+:root {
+  --color-canvas: #fbfbfd;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f5f5f7;
+  --color-surface-hover: #f0f0f3;
+  --color-text-primary: #111113;
+  --color-text-secondary: #4a4a52;
+  --color-text-tertiary: #65656e;
+  --color-border-hairline: rgba(0, 0, 0, 0.07);
+  --color-border-subtle: rgba(0, 0, 0, 0.12);
+  --color-border-hover: rgba(0, 0, 0, 0.24);
+  --color-accent: #111113;
+  --sidebar-w: 260px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-canvas: #0c0c0e;
+    --color-surface: #141416;
+    --color-surface-subtle: #1a1a1e;
+    --color-surface-hover: #222226;
+    --color-text-primary: #f5f5f7;
+    --color-text-secondary: #b8b8c2;
+    --color-text-tertiary: #92929c;
+    --color-border-hairline: rgba(255, 255, 255, 0.08);
+    --color-border-subtle: rgba(255, 255, 255, 0.14);
+    --color-border-hover: rgba(255, 255, 255, 0.28);
+    --color-accent: #f5f5f7;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-text-primary);
+  font-family: "Plus Jakarta Sans Variable", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Geist", "Inter", "Helvetica Neue", sans-serif;
+  letter-spacing: -0.011em;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hairline border utility */
+.border-hairline {
+  border-color: var(--color-border-hairline);
+}
+
+.border-subtle {
+  border-color: var(--color-border-subtle);
+}
+
+/* Focus styles for accessible navigation */
+:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Custom interactive arrow translation */
+.group:hover .group-hover-arrow {
+  transform: translateX(5px);
+}

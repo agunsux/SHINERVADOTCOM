@@ -1,0 +1,71 @@
+---
+import HeroVisual from './HeroVisual.astro';
+---
+
+<section
+  id="home"
+  class="relative min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center pt-8 pb-16 lg:py-20"
+>
+  <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    <!-- Left / Text Column -->
+    <div class="lg:col-span-7 flex flex-col items-start gap-6 lg:gap-8">
+      <!-- Eyebrow -->
+      <span
+        class="inline-block text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)]"
+      >
+        Technology Company
+      </span>
+
+      <!-- Dominant Single Headline (H1) -->
+      <h1
+        class="text-[38px] sm:text-[50px] md:text-[58px] xl:text-[68px] font-medium leading-[1.08] tracking-[-0.035em] text-[var(--color-text-primary)] text-balance"
+      >
+        Building Digital Ecosystems.
+      </h1>
+
+      <!-- Restrained Supporting Copy -->
+      <p
+        class="text-[16px] sm:text-[18px] md:text-[19px] leading-[1.55] text-[var(--color-text-secondary)] max-w-xl tracking-[-0.01em]"
+      >
+        Shinerva builds and grows technology businesses across AI, software, data, and digital platforms.
+      </p>
+
+      <!-- CTAs -->
+      <div class="pt-2 flex flex-wrap items-center gap-4 sm:gap-5 w-full sm:w-auto">
+        <!-- Primary CTA (Visually Dominant) -->
+        <a
+          href="#ecosystem"
+          class="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-[var(--color-text-primary)] text-[var(--color-canvas)] text-[14px] font-medium tracking-tight shadow-sm transition-all duration-200 hover:opacity-90 active:scale-[0.99] focus-visible:outline-none w-full sm:w-auto"
+        >
+          <span>Explore Our Ecosystem</span>
+          <svg
+            class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3.333 8h9.334" />
+            <path d="M8.667 4l4 4-4 4" />
+          </svg>
+        </a>
+
+        <!-- Secondary CTA -->
+        <a
+          href="#about"
+          class="inline-flex items-center justify-center px-6 sm:px-7 py-3.5 rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface)]/60 text-[var(--color-text-primary)] text-[14px] font-medium tracking-tight hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-200 focus-visible:outline-none w-full sm:w-auto"
+        >
+          About Shinerva
+        </a>
+      </div>
+    </div>
+
+    <!-- Right / Visual Column -->
+    <div class="lg:col-span-5 flex items-center justify-center lg:justify-end">
+      <HeroVisual />
+    </div>
+  </div>
+</section>

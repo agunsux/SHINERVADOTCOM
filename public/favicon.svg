@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Shinerva Master Identity Symbol -->
+  <rect width="32" height="32" rx="7" fill="#111113"/>
+  <path d="M10 12C10 7.58 13.58 4.5 18 4.5H20C24.42 4.5 27.5 7.58 27.5 12C27.5 16.42 24.42 19 20 19H15" 
+        stroke="#FFFFFF" 
+        stroke-width="2.75" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+  <path d="M22 20C22 24.42 18.42 27.5 14 27.5H12C7.58 27.5 4.5 24.42 4.5 20C4.5 15.58 7.58 13 12 13H17" 
+        stroke="#FFFFFF" 
+        stroke-width="2.75" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+</svg>

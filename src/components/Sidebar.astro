@@ -1,0 +1,123 @@
+---
+import Logo from './Logo.astro';
+
+// Note: Official external channels can be configured here
+const contactEmail = 'contact@shinerva.com'; // Placeholder: Replace with official Shinerva corporate email
+---
+
+<aside
+  class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[260px] xl:w-[280px] flex-col justify-between p-8 xl:p-10 border-r border-[var(--color-border-hairline)] bg-[var(--color-canvas)] z-30 select-none"
+  aria-label="Parent company sidebar"
+>
+  <!-- Top: Brand Lockup & Navigation -->
+  <div class="flex flex-col gap-10">
+    <div class="pt-1">
+      <Logo symbolSize={26} />
+    </div>
+
+    <nav aria-label="Main navigation" class="flex flex-col gap-1">
+      <a
+        href="#home"
+        data-nav-link
+        class="nav-item group flex items-center justify-between py-2 text-[14px] text-[var(--color-text-primary)] font-medium transition-colors duration-150"
+      >
+        <span>Home</span>
+        <span class="nav-indicator w-1 h-1 rounded-full bg-[var(--color-text-primary)] opacity-100 transition-opacity"></span>
+      </a>
+      <a
+        href="#ecosystem"
+        data-nav-link
+        class="nav-item group flex items-center justify-between py-2 text-[14px] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-150"
+      >
+        <span>Ecosystem</span>
+        <span class="nav-indicator w-1 h-1 rounded-full bg-[var(--color-text-primary)] opacity-0 transition-opacity"></span>
+      </a>
+      <a
+        href="#about"
+        data-nav-link
+        class="nav-item group flex items-center justify-between py-2 text-[14px] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-150"
+      >
+        <span>About</span>
+        <span class="nav-indicator w-1 h-1 rounded-full bg-[var(--color-text-primary)] opacity-0 transition-opacity"></span>
+      </a>
+      <a
+        href="#contact"
+        data-nav-link
+        class="nav-item group flex items-center justify-between py-2 text-[14px] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-150"
+      >
+        <span>Contact</span>
+        <span class="nav-indicator w-1 h-1 rounded-full bg-[var(--color-text-primary)] opacity-0 transition-opacity"></span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Bottom: Quiet Brand Statement & Channels -->
+  <div class="flex flex-col gap-6 pt-8 border-t border-[var(--color-border-hairline)]">
+    <p class="text-[12px] leading-relaxed text-[var(--color-text-tertiary)] tracking-normal">
+      Building digital ecosystems.
+    </p>
+
+    <div class="flex flex-col gap-2 text-[12px] text-[var(--color-text-secondary)]">
+      <div class="flex items-center gap-4">
+        <a
+          href={`mailto:${contactEmail}`}
+          class="hover:text-[var(--color-text-primary)] transition-colors"
+        >
+          {contactEmail}
+        </a>
+      </div>
+
+      <span class="text-[11px] text-[var(--color-text-tertiary)] mt-1 tracking-tight">
+        © 2026 Shinerva
+      </span>
+    </div>
+  </div>
+</aside>
+
+<script>
+  // Clean scrollspy for active navigation links without heavy dependencies
+  const setupScrollspy = () => {
+    const sections = ['home', 'ecosystem', 'about', 'contact'];
+    const links = document.querySelectorAll('[data-nav-link]');
+
+    const updateActive = () => {
+      const scrollPos = window.scrollY + 200;
+      let currentSection = 'home';
+
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPos >= top) {
+            currentSection = id;
+          }
+        }
+      }
+
+      links.forEach((link) => {
+        const href = link.getAttribute('href');
+        const isActive = href === `#${currentSection}`;
+        const indicator = link.querySelector('.nav-indicator');
+
+        if (isActive) {
+          link.classList.remove('text-[var(--color-text-secondary)]');
+          link.classList.add('text-[var(--color-text-primary)]', 'font-medium');
+          if (indicator) indicator.classList.replace('opacity-0', 'opacity-100');
+        } else {
+          link.classList.remove('text-[var(--color-text-primary)]', 'font-medium');
+          link.classList.add('text-[var(--color-text-secondary)]');
+          if (indicator) indicator.classList.replace('opacity-100', 'opacity-0');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupScrollspy);
+  } else {
+    setupScrollspy();
+  }
+</script>

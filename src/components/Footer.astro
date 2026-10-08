@@ -1,0 +1,64 @@
+---
+import Logo from './Logo.astro';
+
+const contactEmail = 'contact@shinerva.com'; // Placeholder: Replace with official Shinerva corporate email
+---
+
+<footer class="py-16 lg:py-20 border-t border-[var(--color-border-hairline)] text-[13px] text-[var(--color-text-secondary)]">
+  <div class="flex flex-col gap-10">
+    <!-- Top Row: Brand & Identity Classification -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <Logo symbolSize={22} />
+        <span class="text-[var(--color-border-subtle)]" aria-hidden="true">/</span>
+        <span class="text-[12px] uppercase tracking-widest text-[var(--color-text-tertiary)] font-medium">
+          Technology Company
+        </span>
+      </div>
+
+      <!-- Ecosystem links -->
+      <div class="flex flex-wrap items-center gap-6 text-[13px] text-[var(--color-text-secondary)]">
+        <a
+          href="https://shinerva.id"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-[var(--color-text-primary)] transition-colors"
+        >
+          Shinerva.id
+        </a>
+        <a
+          href="https://tikum.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-[var(--color-text-primary)] transition-colors"
+        >
+          Tikum.app
+        </a>
+        <a
+          href="https://salmo.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-[var(--color-text-primary)] transition-colors"
+        >
+          Salmo.dev
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom Row: Channels & Copyright -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-[var(--color-border-hairline)] text-[12px]">
+      <div class="flex items-center gap-5">
+        <a
+          href={`mailto:${contactEmail}`}
+          class="hover:text-[var(--color-text-primary)] transition-colors"
+        >
+          {contactEmail}
+        </a>
+      </div>
+
+      <span class="text-[var(--color-text-tertiary)] tracking-tight">
+        © 2026 Shinerva. All rights reserved.
+      </span>
+    </div>
+  </div>
+</footer>

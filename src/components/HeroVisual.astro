@@ -1,0 +1,168 @@
+---
+---
+
+<div class="relative w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[520px] aspect-square flex items-center justify-center select-none" aria-hidden="true">
+  <!-- Subtle Ambient Light / Warm Aura (Non-garish, restrained optical depth) -->
+  <div
+    class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/[0.03] via-transparent to-black/[0.04] dark:from-white/[0.02] dark:to-white/[0.03] blur-3xl pointer-events-none"
+  ></div>
+
+  <!-- Geometric Interconnected Ring Structure (Continuity & Three Ecosystem Nodes) -->
+  <div class="relative w-full h-full flex items-center justify-center">
+    <svg
+      viewBox="0 0 400 400"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-full h-full hero-geometry-spin text-[var(--color-text-primary)]"
+    >
+      <defs>
+        <!-- Soft radial falloff for hairline rings -->
+        <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="currentColor" stop-opacity="0.08" />
+          <stop offset="70%" stop-color="currentColor" stop-opacity="0.04" />
+          <stop offset="100%" stop-color="currentColor" stop-opacity="0.01" />
+        </radialGradient>
+      </defs>
+
+      <!-- Outer Harmonic Boundary Ring -->
+      <circle
+        cx="200"
+        cy="200"
+        r="180"
+        stroke="currentColor"
+        stroke-opacity="0.08"
+        stroke-width="1"
+        stroke-dasharray="4 8"
+      />
+
+      <!-- Secondary Ecosystem Orbit -->
+      <circle
+        cx="200"
+        cy="200"
+        r="135"
+        stroke="currentColor"
+        stroke-opacity="0.12"
+        stroke-width="1"
+      />
+
+      <!-- Inner Foundation Orbit -->
+      <circle
+        cx="200"
+        cy="200"
+        r="90"
+        stroke="currentColor"
+        stroke-opacity="0.09"
+        stroke-width="1"
+        stroke-dasharray="2 6"
+      />
+
+      <!-- Subtle Geometric Axis Indicators (Restrained Precision) -->
+      <line
+        x1="200"
+        y1="15"
+        x2="200"
+        y2="385"
+        stroke="currentColor"
+        stroke-opacity="0.04"
+        stroke-width="1"
+      />
+      <line
+        x1="15"
+        y1="200"
+        x2="385"
+        y2="200"
+        stroke="currentColor"
+        stroke-opacity="0.04"
+        stroke-width="1"
+      />
+
+      <!-- Three Ecosystem Focal Nodes (Shinerva.id, Tikum.app, Salmo.dev) -->
+      <!-- Node 1: North-East (AI & Creative Technology) -->
+      <g transform="translate(295, 105)">
+        <circle cx="0" cy="0" r="4.5" fill="currentColor" fill-opacity="0.4" />
+        <circle cx="0" cy="0" r="1.5" fill="var(--color-canvas)" />
+      </g>
+
+      <!-- Node 2: South-East (Digital Marketplace) -->
+      <g transform="translate(295, 295)">
+        <circle cx="0" cy="0" r="4.5" fill="currentColor" fill-opacity="0.4" />
+        <circle cx="0" cy="0" r="1.5" fill="var(--color-canvas)" />
+      </g>
+
+      <!-- Node 3: West (Sports Data & Intelligence) -->
+      <g transform="translate(65, 200)">
+        <circle cx="0" cy="0" r="4.5" fill="currentColor" fill-opacity="0.4" />
+        <circle cx="0" cy="0" r="1.5" fill="var(--color-canvas)" />
+      </g>
+
+      <!-- Connection vectors indicating ecosystem exchange -->
+      <path
+        d="M 295 105 C 260 160 220 180 200 200"
+        stroke="currentColor"
+        stroke-opacity="0.07"
+        stroke-width="1"
+      />
+      <path
+        d="M 295 295 C 260 240 220 220 200 200"
+        stroke="currentColor"
+        stroke-opacity="0.07"
+        stroke-width="1"
+      />
+      <path
+        d="M 65 200 C 120 200 160 200 200 200"
+        stroke="currentColor"
+        stroke-opacity="0.07"
+        stroke-width="1"
+      />
+    </svg>
+
+    <!-- Center Gravitas: Master Shinerva Monogram in Restrained Material Form -->
+    <div
+      class="absolute w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-3xl bg-[var(--color-surface)] border border-[var(--color-border-subtle)] shadow-[0_12px_40px_rgba(0,0,0,0.04)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.4)] flex items-center justify-center p-6 transition-transform duration-300"
+    >
+      <svg
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-full h-full text-[var(--color-text-primary)]"
+      >
+        <path
+          d="M10 12C10 7.58 13.58 4.5 18 4.5H20C24.42 4.5 27.5 7.58 27.5 12C27.5 16.42 24.42 19 20 19H15"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M22 20C22 24.42 18.42 27.5 14 27.5H12C7.58 27.5 4.5 24.42 4.5 20C4.5 15.58 7.58 13 12 13H17"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-geometry-spin {
+    animation: slowOrbit 180s linear infinite;
+    transform-origin: center;
+  }
+
+  @keyframes slowOrbit {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-geometry-spin {
+      animation: none;
+    }
+  }
+</style>

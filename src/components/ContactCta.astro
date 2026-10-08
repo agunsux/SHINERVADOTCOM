@@ -1,0 +1,56 @@
+---
+// Official corporate email placeholder: Flagged for production domain configuration
+const contactEmail = 'contact@shinerva.com';
+---
+
+<section id="contact" class="py-24 lg:py-32 border-t border-[var(--color-border-hairline)]">
+  <div class="rounded-3xl bg-[var(--color-surface)] border border-[var(--color-border-subtle)] p-8 sm:p-14 lg:p-20 flex flex-col items-start gap-8 relative overflow-hidden">
+    <!-- Subtle architectural background accent -->
+    <div
+      class="absolute right-0 bottom-0 w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-tl from-black/[0.03] to-transparent dark:from-white/[0.02] pointer-events-none blur-2xl"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Eyebrow -->
+    <span class="text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)]">
+      Have an idea, product, or partnership?
+    </span>
+
+    <!-- Large Headline -->
+    <h2 class="text-[36px] sm:text-[48px] md:text-[56px] font-medium leading-[1.08] tracking-[-0.035em] text-[var(--color-text-primary)] max-w-2xl text-balance">
+      Let's build what comes next.
+    </h2>
+
+    <p class="text-[16px] sm:text-[17px] text-[var(--color-text-secondary)] max-w-xl leading-relaxed tracking-[-0.01em]">
+      Shinerva collaborates with forward-thinking operators, founders, and partners across technology and digital ecosystems.
+    </p>
+
+    <!-- Primary CTA -->
+    <div class="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+      <a
+        href={`mailto:${contactEmail}`}
+        class="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-[var(--color-text-primary)] text-[var(--color-canvas)] text-[14px] font-medium tracking-tight shadow-sm transition-all duration-200 hover:opacity-90 active:scale-[0.99] focus-visible:outline-none"
+      >
+        <span>Get in touch</span>
+        <svg
+          class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3.333 8h9.334" />
+          <path d="M8.667 4l4 4-4 4" />
+        </svg>
+      </a>
+
+      <!-- Official email address label -->
+      <span class="text-[13px] text-[var(--color-text-tertiary)] font-mono sm:pl-2">
+        {contactEmail}
+      </span>
+    </div>
+  </div>
+</section>

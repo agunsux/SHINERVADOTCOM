@@ -1,0 +1,103 @@
+---
+import Sidebar from '../components/Sidebar.astro';
+import MobileNav from '../components/MobileNav.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Shinerva — Building Digital Ecosystems',
+  description = 'Shinerva builds and grows technology businesses across AI, software, data, and digital platforms.',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://shinerva.com');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Essential Meta Tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Shinerva" />
+    <meta property="og:image" content="https://shinerva.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Shinerva — Building Digital Ecosystems" />
+
+    <!-- Twitter / X Metadata -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://shinerva.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Shinerva — Building Digital Ecosystems" />
+
+    <!-- Icons & Manifest -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Structured Data (JSON-LD Organization & Ecosystem Hierarchy) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Shinerva",
+        "url": "https://shinerva.com",
+        "logo": "https://shinerva.com/favicon.svg",
+        "description": "Shinerva builds and grows technology businesses across AI, software, data, and digital platforms.",
+        "subOrganization": [
+          {
+            "@type": "Organization",
+            "name": "Shinerva.id",
+            "url": "https://shinerva.id",
+            "description": "AI voice technology and digital products for creators, businesses, and the Indonesian market."
+          },
+          {
+            "@type": "Organization",
+            "name": "Tikum.app",
+            "url": "https://tikum.app",
+            "description": "A digital marketplace built around useful products, services, and everyday technology."
+          },
+          {
+            "@type": "Organization",
+            "name": "Salmo.dev",
+            "url": "https://salmo.dev",
+            "description": "A football data and research platform turning sports data into better decisions."
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body class="min-h-screen bg-[var(--color-canvas)] text-[var(--color-text-primary)] antialiased">
+    <!-- Desktop Left Sidebar -->
+    <Sidebar />
+
+    <!-- Mobile Top Navigation Header -->
+    <MobileNav />
+
+    <!-- Main Content Flow (Offset on desktop for fixed sidebar) -->
+    <div class="lg:pl-[260px] xl:pl-[280px] min-h-screen flex flex-col justify-between">
+      <main class="w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-14 xl:px-16 flex-1">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>

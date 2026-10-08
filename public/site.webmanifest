@@ -1,0 +1,16 @@
+{
+  "name": "Shinerva",
+  "short_name": "Shinerva",
+  "description": "Building Digital Ecosystems. Shinerva builds and grows technology businesses across AI, software, data, and digital platforms.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfbfd",
+  "theme_color": "#111113",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

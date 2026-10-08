@@ -1,0 +1,131 @@
+---
+import Logo from './Logo.astro';
+
+const contactEmail = 'contact@shinerva.com'; // Placeholder: Replace with official Shinerva corporate email
+---
+
+<header
+  class="lg:hidden sticky top-0 left-0 right-0 z-40 bg-[var(--color-canvas)]/90 backdrop-blur-md border-b border-[var(--color-border-hairline)] transition-colors duration-200"
+>
+  <div class="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+    <Logo symbolSize={24} />
+
+    <button
+      id="mobile-nav-toggle"
+      type="button"
+      class="p-2 -mr-2 text-[var(--color-text-primary)] hover:opacity-75 focus-visible:outline-none transition-opacity"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav-menu"
+    >
+      <svg
+        id="icon-open"
+        class="w-5 h-5 block"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="4" y1="7" x2="20" y2="7" />
+        <line x1="4" y1="17" x2="20" y2="17" />
+      </svg>
+      <svg
+        id="icon-close"
+        class="w-5 h-5 hidden"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div
+    id="mobile-nav-menu"
+    class="hidden px-6 pt-4 pb-8 border-t border-[var(--color-border-hairline)] bg-[var(--color-canvas)] flex-col gap-6"
+  >
+    <nav class="flex flex-col gap-4 text-[16px]">
+      <a
+        href="#home"
+        class="mobile-nav-link text-[var(--color-text-primary)] py-1 font-medium transition-colors"
+      >
+        Home
+      </a>
+      <a
+        href="#ecosystem"
+        class="mobile-nav-link text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] py-1 transition-colors"
+      >
+        Ecosystem
+      </a>
+      <a
+        href="#about"
+        class="mobile-nav-link text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] py-1 transition-colors"
+      >
+        About
+      </a>
+      <a
+        href="#contact"
+        class="mobile-nav-link text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] py-1 transition-colors"
+      >
+        Contact
+      </a>
+    </nav>
+
+    <div class="pt-6 border-t border-[var(--color-border-hairline)] flex flex-col gap-3">
+      <p class="text-[12px] text-[var(--color-text-tertiary)]">
+        Building digital ecosystems.
+      </p>
+      <div class="flex items-center gap-4 text-[13px] text-[var(--color-text-secondary)]">
+        <a href={`mailto:${contactEmail}`} class="hover:text-[var(--color-text-primary)] transition-colors">{contactEmail}</a>
+      </div>
+      <span class="text-[11px] text-[var(--color-text-tertiary)] mt-1">
+        © 2026 Shinerva
+      </span>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-nav-toggle');
+  const menu = document.getElementById('mobile-nav-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  let isOpen = false;
+
+  const setMenuState = (open: boolean) => {
+    isOpen = open;
+    if (open) {
+      menu?.classList.remove('hidden');
+      menu?.classList.add('flex');
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+      toggleBtn?.setAttribute('aria-expanded', 'true');
+    } else {
+      menu?.classList.remove('flex');
+      menu?.classList.add('hidden');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      toggleBtn?.setAttribute('aria-expanded', 'false');
+    }
+  };
+
+  toggleBtn?.addEventListener('click', () => {
+    setMenuState(!isOpen);
+  });
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      setMenuState(false);
+    });
+  });
+</script>

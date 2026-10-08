@@ -1,0 +1,66 @@
+---
+interface Props {
+  size?: number;
+  class?: string;
+  badge?: boolean;
+}
+
+const { size = 28, class: className = '', badge = false } = Astro.props;
+---
+
+{badge ? (
+  <div 
+    class={`inline-flex items-center justify-center rounded-xl bg-[var(--color-text-primary)] text-[var(--color-canvas)] transition-transform duration-200 ${className}`}
+    style={`width: ${size}px; height: ${size}px;`}
+    aria-hidden="true"
+  >
+    <svg
+      width={Math.round(size * 0.68)}
+      height={Math.round(size * 0.68)}
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="currentColor"
+    >
+      <path
+        d="M10 12C10 7.58 13.58 4.5 18 4.5H20C24.42 4.5 27.5 7.58 27.5 12C27.5 16.42 24.42 19 20 19H15"
+        stroke="currentColor"
+        stroke-width="2.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M22 20C22 24.42 18.42 27.5 14 27.5H12C7.58 27.5 4.5 24.42 4.5 20C4.5 15.58 7.58 13 12 13H17"
+        stroke="currentColor"
+        stroke-width="2.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </div>
+) : (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class={`text-[var(--color-text-primary)] transition-transform duration-200 ${className}`}
+    aria-hidden="true"
+  >
+    <path
+      d="M10 12C10 7.58 13.58 4.5 18 4.5H20C24.42 4.5 27.5 7.58 27.5 12C27.5 16.42 24.42 19 20 19H15"
+      stroke="currentColor"
+      stroke-width="2.75"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M22 20C22 24.42 18.42 27.5 14 27.5H12C7.58 27.5 4.5 24.42 4.5 20C4.5 15.58 7.58 13 12 13H17"
+      stroke="currentColor"
+      stroke-width="2.75"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+)}

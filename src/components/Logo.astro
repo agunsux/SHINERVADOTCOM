@@ -1,0 +1,24 @@
+---
+import BrandSymbol from './BrandSymbol.astro';
+
+interface Props {
+  symbolSize?: number;
+  showWordmark?: boolean;
+  class?: string;
+}
+
+const { symbolSize = 24, showWordmark = true, class: className = '' } = Astro.props;
+---
+
+<a
+  href="#home"
+  class={`group inline-flex items-center gap-3 text-[var(--color-text-primary)] tracking-tight focus-visible:outline-none ${className}`}
+  aria-label="Shinerva"
+>
+  <BrandSymbol size={symbolSize} badge={true} />
+  {showWordmark && (
+    <span class="font-medium tracking-[0.06em] text-[13px] uppercase text-[var(--color-text-primary)]">
+      Shinerva
+    </span>
+  )}
+</a>

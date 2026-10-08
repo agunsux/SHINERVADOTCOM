@@ -1,0 +1,66 @@
+---
+interface Props {
+  name: string;
+  category: string;
+  description: string;
+  url: string;
+  ctaText: string;
+  supportingLine?: string;
+  index: string;
+}
+
+const { name, category, description, url, ctaText, supportingLine, index } = Astro.props;
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group relative block p-8 sm:p-10 lg:p-12 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border-subtle)] hover:border-[var(--color-border-hover)] hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none"
+>
+  <div class="flex flex-col justify-between h-full gap-8">
+    <!-- Top Metadata: Index & Category -->
+    <div class="flex items-center justify-between gap-4">
+      <span class="text-[11px] font-semibold tracking-[0.18em] uppercase text-[var(--color-text-tertiary)]">
+        {category}
+      </span>
+      <span class="text-[12px] font-mono text-[var(--color-text-tertiary)]">
+        {index}
+      </span>
+    </div>
+
+    <!-- Center: Brand Name & Editorial Description -->
+    <div class="flex flex-col gap-3">
+      <h3 class="text-[26px] sm:text-[30px] font-medium tracking-[-0.025em] text-[var(--color-text-primary)] transition-colors">
+        {name}
+      </h3>
+      <p class="text-[15px] sm:text-[16px] leading-[1.6] text-[var(--color-text-secondary)] tracking-[-0.01em] max-w-2xl">
+        {description}
+      </p>
+
+      {supportingLine && (
+        <p class="text-[13px] text-[var(--color-text-tertiary)] tracking-normal pt-1">
+          {supportingLine}
+        </p>
+      )}
+    </div>
+
+    <!-- Bottom: Subtle Interactive CTA with 4-6px arrow shift -->
+    <div class="pt-2 flex items-center gap-2 text-[14px] font-medium text-[var(--color-text-primary)]">
+      <span>{ctaText}</span>
+      <svg
+        class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1.5"
+        viewBox="0 0 16 16"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M3.333 8h9.334" />
+        <path d="M8.667 4l4 4-4 4" />
+      </svg>
+    </div>
+  </div>
+</a>
