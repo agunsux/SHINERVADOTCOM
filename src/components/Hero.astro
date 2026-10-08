@@ -2,70 +2,74 @@
 import HeroVisual from './HeroVisual.astro';
 ---
 
-<section
-  id="home"
-  class="relative min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center pt-8 pb-16 lg:py-20"
->
-  <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-    <!-- Left / Text Column -->
-    <div class="lg:col-span-7 flex flex-col items-start gap-6 lg:gap-8">
-      <!-- Eyebrow -->
-      <span
-        class="inline-block text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)]"
-      >
-        Technology Company
-      </span>
+<div id="home" class="p-[12px] sm:p-4 pt-[calc(12px+env(safe-area-inset-top,0px))]">
+  <section
+    class="relative rounded-[32px] min-h-[92vh] overflow-hidden bg-gradient-to-br from-[var(--terracotta)] to-[var(--terracotta-deep)] text-[#F7F2EC] flex items-center px-6 sm:px-12 lg:px-20 py-24 sm:py-28"
+  >
+    <!-- Static Grain Overlay (feTurbulence ~6% opacity) -->
+    <div class="hero-grain absolute inset-0 pointer-events-none" aria-hidden="true"></div>
 
-      <!-- Dominant Single Headline (H1) -->
-      <h1
-        class="text-[38px] sm:text-[50px] md:text-[58px] xl:text-[68px] font-medium leading-[1.08] tracking-[-0.035em] text-[var(--color-text-primary)] text-balance"
-      >
-        Building Digital Ecosystems.
-      </h1>
-
-      <!-- Restrained Supporting Copy -->
-      <p
-        class="text-[16px] sm:text-[18px] md:text-[19px] leading-[1.55] text-[var(--color-text-secondary)] max-w-xl tracking-[-0.01em]"
-      >
-        Shinerva builds and grows technology businesses across AI, software, data, and digital platforms.
-      </p>
-
-      <!-- CTAs -->
-      <div class="pt-2 flex flex-wrap items-center gap-4 sm:gap-5 w-full sm:w-auto">
-        <!-- Primary CTA (Visually Dominant) -->
-        <a
-          href="#ecosystem"
-          class="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-[var(--color-text-primary)] text-[var(--color-canvas)] text-[14px] font-medium tracking-tight shadow-sm transition-all duration-200 hover:opacity-90 active:scale-[0.99] focus-visible:outline-none w-full sm:w-auto"
+    <div class="relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center max-w-7xl mx-auto">
+      <!-- Left: Core Message -->
+      <div class="lg:col-span-7 flex flex-col items-start gap-6 sm:gap-8">
+        <!-- Eyebrow -->
+        <span
+          class="inline-block text-[12px] sm:text-[13px] font-semibold tracking-[0.2em] uppercase text-[#F7F2EC]/70"
         >
-          <span>Explore Our Ecosystem</span>
-          <svg
-            class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.75"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
+          Technology Company
+        </span>
+
+        <!-- Dominant Single Headline (H1) -->
+        <h1
+          class="text-[48px] sm:text-[68px] md:text-[84px] lg:text-[96px] xl:text-[112px] font-extrabold leading-[0.98] tracking-[-0.04em] text-[#F7F2EC] text-balance max-w-3xl"
+        >
+          Building Digital Ecosystems.
+        </h1>
+
+        <!-- Supporting Line -->
+        <p
+          class="text-[17px] sm:text-[19px] md:text-[20px] leading-relaxed text-[#F7F2EC]/85 max-w-xl font-normal tracking-[-0.01em]"
+        >
+          Shinerva builds and grows technology businesses across AI, software, and data.
+        </p>
+
+        <!-- Primary & Secondary CTAs -->
+        <div class="pt-4 flex flex-wrap items-center gap-5 sm:gap-6 w-full sm:w-auto">
+          <!-- Primary CTA (Cream Pill, Ink Text) -->
+          <a
+            href="#ecosystem"
+            class="group inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 rounded-full bg-[#F7F2EC] text-[#1A1612] text-[15px] font-bold tracking-tight shadow-lg hover:bg-white active:scale-[0.98] transition-all duration-200 focus-visible:outline-none w-full sm:w-auto"
           >
-            <path d="M3.333 8h9.334" />
-            <path d="M8.667 4l4 4-4 4" />
-          </svg>
-        </a>
+            <span>Explore Our Ecosystem</span>
+            <svg
+              class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3.333 8h9.334" />
+              <path d="M8.667 4l4 4-4 4" />
+            </svg>
+          </a>
 
-        <!-- Secondary CTA -->
-        <a
-          href="#about"
-          class="inline-flex items-center justify-center px-6 sm:px-7 py-3.5 rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-surface)]/60 text-[var(--color-text-primary)] text-[14px] font-medium tracking-tight hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-200 focus-visible:outline-none w-full sm:w-auto"
-        >
-          About Shinerva
-        </a>
+          <!-- Secondary CTA (Cream Text Link) -->
+          <a
+            href="#about"
+            class="inline-flex items-center justify-center px-4 py-3 text-[15px] font-semibold text-[#F7F2EC]/85 hover:text-[#F7F2EC] underline underline-offset-4 decoration-[#F7F2EC]/40 hover:decoration-[#F7F2EC] transition-all focus-visible:outline-none"
+          >
+            About Shinerva
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Desktop Orbital Visual (Hidden on mobile) -->
+      <div class="hidden lg:flex lg:col-span-5 items-center justify-center lg:justify-end">
+        <HeroVisual />
       </div>
     </div>
-
-    <!-- Right / Visual Column -->
-    <div class="lg:col-span-5 flex items-center justify-center lg:justify-end">
-      <HeroVisual />
-    </div>
-  </div>
-</section>
+  </section>
+</div>

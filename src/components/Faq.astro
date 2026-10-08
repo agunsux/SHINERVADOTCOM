@@ -1,0 +1,86 @@
+---
+const faqs = [
+  {
+    q: 'What is Shinerva?',
+    a: 'Shinerva is a technology company that builds and grows independent digital businesses across AI, software, and data.',
+  },
+  {
+    q: 'How is Shinerva related to Shinerva.id, Tikum, and Salmo?',
+    a: 'They are separate products and brands built and operated under Shinerva.',
+  },
+  {
+    q: 'How can I get in touch?',
+    a: 'Email contact@shinerva.com for partnerships, ideas, or product enquiries.',
+  },
+];
+---
+
+<section id="faq" class="py-28 sm:py-36 px-6 sm:px-12 lg:px-20 bg-[var(--night)] text-[#F7F2EC] border-t border-[var(--line)]">
+  <div data-fade-up class="max-w-4xl mx-auto flex flex-col gap-12 sm:gap-16">
+    <!-- Header -->
+    <div class="flex flex-col gap-3">
+      <span class="text-[12px] sm:text-[13px] font-bold tracking-[0.2em] uppercase text-[var(--terracotta-text-night)]">
+        Frequently Asked Questions
+      </span>
+      <h2 class="text-[36px] sm:text-[48px] md:text-[56px] font-extrabold leading-[0.98] tracking-[-0.04em] text-[#F7F2EC]">
+        Common Questions
+      </h2>
+    </div>
+
+    <!-- FAQ List (Native <details>) -->
+    <div class="flex flex-col border-t border-white/10">
+      {faqs.map((faq) => (
+        <details class="group py-6 sm:py-8 border-b border-white/10 cursor-pointer list-none">
+          <summary class="flex items-center justify-between gap-6 list-none focus-visible:outline-none">
+            <span class="text-[19px] sm:text-[22px] font-bold text-[#F7F2EC] group-hover:text-[var(--terracotta)] transition-colors tracking-tight">
+              {faq.q}
+            </span>
+            <span class="w-8 h-8 rounded-full bg-[var(--terracotta)] text-white flex items-center justify-center shrink-0 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">
+              <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="8" y1="3" x2="8" y2="13" />
+                <line x1="3" y1="8" x2="13" y2="8" />
+              </svg>
+            </span>
+          </summary>
+          <div class="pt-4 pr-12 text-[16px] sm:text-[17px] text-[#F7F2EC]/80 leading-relaxed font-normal">
+            <p>{faq.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FAQPage JSON-LD Structured Data -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Shinerva?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Shinerva is a technology company that builds and grows independent digital businesses across AI, software, and data."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is Shinerva related to Shinerva.id, Tikum, and Salmo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They are separate products and brands built and operated under Shinerva."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I get in touch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Email contact@shinerva.com for partnerships, ideas, or product enquiries."
+        }
+      }
+    ]
+  }
+</script>

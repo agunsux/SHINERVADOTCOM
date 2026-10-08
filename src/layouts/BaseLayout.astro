@@ -1,6 +1,5 @@
 ---
-import Sidebar from '../components/Sidebar.astro';
-import MobileNav from '../components/MobileNav.astro';
+import FloatingNav from '../components/FloatingNav.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -9,8 +8,8 @@ interface Props {
 }
 
 const {
-  title = 'Shinerva — Building Digital Ecosystems',
-  description = 'Shinerva builds and grows technology businesses across AI, software, data, and digital platforms.',
+  title = 'Shinerva - Building Digital Ecosystems',
+  description = 'Shinerva builds and grows technology businesses across AI, software, and data.',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, 'https://shinerva.com');
@@ -62,42 +61,84 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://shinerva.com');
         "name": "Shinerva",
         "url": "https://shinerva.com",
         "logo": "https://shinerva.com/favicon.svg",
-        "description": "Shinerva builds and grows technology businesses across AI, software, data, and digital platforms.",
+        "description": "Shinerva builds and grows technology businesses across AI, software, and data.",
         "subOrganization": [
           {
             "@type": "Organization",
             "name": "Shinerva.id",
             "url": "https://shinerva.id",
-            "description": "AI voice technology and digital products for creators, businesses, and the Indonesian market."
+            "description": "Natural Indonesian AI voice for creators, educators, and businesses."
           },
           {
             "@type": "Organization",
-            "name": "Tikum.app",
+            "name": "Tikum",
             "url": "https://tikum.app",
-            "description": "A digital marketplace built around useful products, services, and everyday technology."
+            "description": "A consumer brand built around useful products and everyday technology."
           },
           {
             "@type": "Organization",
-            "name": "Salmo.dev",
+            "name": "Salmo",
             "url": "https://salmo.dev",
-            "description": "A football data and research platform turning sports data into better decisions."
+            "description": "Football research and data turned into better decisions. Built on the HandicapLab foundation."
           }
         ]
       }
     </script>
   </head>
-  <body class="min-h-screen bg-[var(--color-canvas)] text-[var(--color-text-primary)] antialiased">
-    <!-- Desktop Left Sidebar -->
-    <Sidebar />
+  <body class="min-h-screen bg-[var(--canvas)] text-[var(--ink)] antialiased">
+    <!-- Floating Pill Navigation (Centered, Fixed) -->
+    <FloatingNav />
 
-    <!-- Mobile Top Navigation Header -->
-    <MobileNav />
+    <!-- Main Content Flow -->
+    <main class="w-full">
+      <slot />
+    </main>
 
-    <!-- Main Content Flow (Offset on desktop for fixed sidebar) -->
-    <div class="lg:pl-[260px] xl:pl-[280px] min-h-screen flex flex-col justify-between">
-      <main class="w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-14 xl:px-16 flex-1">
-        <slot />
-      </main>
-    </div>
+    <!-- Fade-up IntersectionObserver (16px, 600ms, once) -->
+    <script>
+      const setupFadeUp = () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const targets = document.querySelectorAll('[data-fade-up]');
+        if (!('IntersectionObserver' in window)) return;
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('fade-up-visible');
+                entry.target.classList.remove('fade-up-init');
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.02, rootMargin: '0px 0px 100px 0px' }
+        );
+
+        targets.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight) {
+            el.classList.add('fade-up-visible');
+          } else {
+            el.classList.add('fade-up-init');
+            observer.observe(el);
+          }
+        });
+
+        // Fail-safe to guarantee content is never permanently hidden
+        setTimeout(() => {
+          targets.forEach((el) => {
+            el.classList.add('fade-up-visible');
+            el.classList.remove('fade-up-init');
+          });
+        }, 1500);
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupFadeUp);
+      } else {
+        setupFadeUp();
+      }
+    </script>
   </body>
 </html>

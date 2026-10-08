@@ -3,57 +3,63 @@ import EcosystemCard from './EcosystemCard.astro';
 
 const products = [
   {
-    index: '01',
     name: 'Shinerva.id',
-    category: 'AI & Creative Technology',
-    description: 'AI voice technology and digital products for creators, businesses, and the Indonesian market.',
+    tagline: 'Give Your Voice Life.',
+    descriptor: 'AI VOICE & CREATIVE TECHNOLOGY',
+    body: 'Natural Indonesian AI voice for creators, educators, and businesses.',
     url: 'https://shinerva.id',
     ctaText: 'Visit shinerva.id',
+    ariaLabel: 'Visit Shinerva.id — AI Voice and Creative Technology',
   },
   {
-    index: '02',
-    name: 'Tikum.app',
-    category: 'Digital Marketplace',
-    description: 'A digital marketplace built around useful products, services, and everyday technology.',
+    name: 'Tikum',
+    tagline: 'Things That Matter.',
+    descriptor: 'DIGITAL PRODUCTS & MARKETPLACE',
+    body: 'A consumer brand built around useful products and everyday technology.',
     url: 'https://tikum.app',
     ctaText: 'Visit tikum.app',
+    ariaLabel: 'Visit Tikum — Digital Products and Marketplace',
   },
   {
-    index: '03',
-    name: 'Salmo.dev',
-    category: 'Sports Data & Intelligence',
-    description: 'A football data and research platform turning sports data into better decisions.',
-    supportingLine: 'Built on the HandicapLab research and data foundation.',
+    name: 'Salmo',
+    tagline: 'See the Game Differently.',
+    descriptor: 'FOOTBALL DATA & INTELLIGENCE',
+    body: 'Football research and data turned into better decisions. Built on the HandicapLab foundation.',
     url: 'https://salmo.dev',
     ctaText: 'Visit salmo.dev',
+    ariaLabel: 'Visit Salmo — Football Data and Intelligence',
   },
 ];
 ---
 
-<section id="ecosystem" class="py-20 lg:py-28 border-t border-[var(--color-border-hairline)]">
-  <div class="flex flex-col gap-12 lg:gap-16">
-    <!-- Section Header -->
+<section
+  id="ecosystem"
+  class="relative py-28 sm:py-36 px-6 sm:px-12 lg:px-20 border-t border-[var(--line)]"
+  style="background-image: radial-gradient(rgba(193, 88, 58, 0.14) 1px, transparent 1px); background-size: 24px 24px;"
+>
+  <div data-fade-up class="max-w-7xl mx-auto flex flex-col gap-14 sm:gap-20">
+    <!-- Header -->
     <div class="flex flex-col gap-4 max-w-2xl">
-      <span class="text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)]">
+      <span class="text-[12px] sm:text-[13px] font-bold tracking-[0.2em] uppercase text-[var(--terracotta-text)]">
         Our Ecosystem
       </span>
-      <h2 class="text-[32px] sm:text-[40px] md:text-[46px] font-medium leading-[1.12] tracking-[-0.03em] text-[var(--color-text-primary)]">
+      <h2 class="text-[40px] sm:text-[56px] md:text-[64px] font-extrabold leading-[0.98] tracking-[-0.04em] text-[var(--ink)]">
         Three businesses.
-        <span class="block text-[var(--color-text-secondary)] font-normal">One ecosystem.</span>
+        <span class="block text-[var(--ink-soft)] font-extrabold">One ecosystem.</span>
       </h2>
     </div>
 
-    <!-- Product Grid / Editorial Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-6">
+    <!-- 3 Cards: Desktop 3 cols, Tablet 2 cols, Mobile 1 col -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
       {products.map((item) => (
         <EcosystemCard
-          index={item.index}
           name={item.name}
-          category={item.category}
-          description={item.description}
-          supportingLine={item.supportingLine}
+          tagline={item.tagline}
+          descriptor={item.descriptor}
+          body={item.body}
           url={item.url}
           ctaText={item.ctaText}
+          ariaLabel={item.ariaLabel}
         />
       ))}
     </div>

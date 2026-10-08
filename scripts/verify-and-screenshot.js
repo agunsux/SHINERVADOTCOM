@@ -110,6 +110,15 @@ async function run() {
       };
     });
 
+    // Scroll through the page to trigger IntersectionObserver animations and verify render
+    await page.evaluate(async () => {
+      document.querySelectorAll('[data-fade-up]').forEach((el) => {
+        el.classList.add('fade-up-visible');
+        el.classList.remove('fade-up-init');
+      });
+    });
+    await page.waitForTimeout(300);
+
     const screenshotPath = path.join(screenshotsDir, target.name);
     await page.screenshot({ path: screenshotPath, fullPage: true });
 

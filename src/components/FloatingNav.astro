@@ -1,0 +1,183 @@
+---
+import BrandSymbol from './BrandSymbol.astro';
+
+const navLinks = [
+  { name: 'Ecosystem', href: '#ecosystem' },
+  { name: 'About', href: '#about' },
+  { name: 'FAQ', href: '#faq' },
+];
+---
+
+<header
+  class="fixed z-50 left-1/2 -translate-x-1/2 w-[calc(100%-24px)] sm:w-[calc(100%-32px)] max-w-[920px] transition-all duration-300"
+  style="top: calc(16px + env(safe-area-inset-top, 0px));"
+>
+  <!-- Floating Pill Bar -->
+  <div
+    class="w-full h-14 sm:h-16 px-4 sm:px-6 rounded-full bg-[var(--canvas)]/90 backdrop-blur-md border border-[var(--line)] shadow-[0_8px_30px_rgba(26,22,18,0.08)] flex items-center justify-between"
+  >
+    <!-- Left: Brand Logo Lockup -->
+    <a
+      href="#home"
+      class="group inline-flex items-center gap-2.5 text-[var(--ink)] focus-visible:outline-none"
+    >
+      <div class="w-7 h-7 rounded-lg bg-[var(--ink)] text-[var(--canvas)] flex items-center justify-center">
+        <BrandSymbol size={22} class="text-[var(--canvas)]" />
+      </div>
+      <span class="font-bold tracking-[0.08em] text-[13px] uppercase text-[var(--ink)]">
+        Shinerva
+      </span>
+    </a>
+
+    <!-- Center: Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 text-[14px] font-medium text-[var(--ink-soft)]" aria-label="Main Navigation">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          data-nav-pill={link.href.replace('#', '')}
+          class="nav-pill-link relative py-1 hover:text-[var(--ink)] transition-colors duration-150"
+        >
+          <span>{link.name}</span>
+          <span class="nav-pill-indicator absolute left-0 right-0 -bottom-1 h-[2px] bg-[var(--terracotta)] opacity-0 transition-opacity duration-200"></span>
+        </a>
+      ))}
+    </nav>
+
+    <!-- Right: Contact CTA & Mobile Hamburger -->
+    <div class="flex items-center gap-2">
+      <!-- Contact Button -->
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-full bg-[var(--terracotta-btn)] text-white text-[13px] sm:text-[14px] font-semibold tracking-tight shadow-sm hover:bg-[var(--terracotta-deep)] active:scale-[0.98] transition-all duration-200 focus-visible:outline-none"
+      >
+        <span>Contact</span>
+        <svg
+          class="w-3.5 h-3.5"
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3.333 8h9.334" />
+          <path d="M8.667 4l4 4-4 4" />
+        </svg>
+      </a>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button
+        id="pill-nav-toggle"
+        type="button"
+        class="md:hidden p-2 text-[var(--ink)] hover:text-[var(--terracotta)] focus-visible:outline-none transition-colors"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="pill-mobile-sheet"
+      >
+        <svg id="pill-icon-open" class="w-5 h-5 block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="4" y1="7" x2="20" y2="7" />
+          <line x1="4" y1="17" x2="20" y2="17" />
+        </svg>
+        <svg id="pill-icon-close" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Sheet -->
+  <div
+    id="pill-mobile-sheet"
+    class="hidden md:hidden mt-2 p-5 rounded-3xl bg-[var(--canvas)]/95 backdrop-blur-xl border border-[var(--line)] shadow-[0_12px_40px_rgba(26,22,18,0.12)] flex-col gap-3 transition-all"
+  >
+    <nav class="flex flex-col gap-2 text-[16px] font-medium text-[var(--ink)]">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-sheet-link py-2 px-3 rounded-xl hover:bg-[var(--line)]/50 transition-colors"
+        >
+          {link.name}
+        </a>
+      ))}
+      <a
+        href="#contact"
+        class="mobile-sheet-link py-2 px-3 rounded-xl text-[var(--terracotta-text)] font-semibold hover:bg-[var(--line)]/50 transition-colors"
+      >
+        Contact
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Mobile sheet toggle
+  const toggleBtn = document.getElementById('pill-nav-toggle');
+  const sheet = document.getElementById('pill-mobile-sheet');
+  const iconOpen = document.getElementById('pill-icon-open');
+  const iconClose = document.getElementById('pill-icon-close');
+  const mobileLinks = document.querySelectorAll('.mobile-sheet-link');
+
+  let isOpen = false;
+  const setOpen = (open: boolean) => {
+    isOpen = open;
+    if (open) {
+      sheet?.classList.remove('hidden');
+      sheet?.classList.add('flex');
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+      toggleBtn?.setAttribute('aria-expanded', 'true');
+    } else {
+      sheet?.classList.remove('flex');
+      sheet?.classList.add('hidden');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      toggleBtn?.setAttribute('aria-expanded', 'false');
+    }
+  };
+
+  toggleBtn?.addEventListener('click', () => setOpen(!isOpen));
+  mobileLinks.forEach((l) => l.addEventListener('click', () => setOpen(false)));
+
+  // Scrollspy active indicator
+  const setupScrollspy = () => {
+    const sections = ['ecosystem', 'about', 'faq'];
+    const pillLinks = document.querySelectorAll<HTMLElement>('.nav-pill-link');
+
+    const onScroll = () => {
+      const scrollPos = window.scrollY + 250;
+      let active = '';
+
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && scrollPos >= el.offsetTop) {
+          active = id;
+        }
+      }
+
+      pillLinks.forEach((link) => {
+        const target = link.dataset.navPill;
+        const indicator = link.querySelector<HTMLElement>('.nav-pill-indicator');
+        if (target === active) {
+          link.classList.add('text-[var(--ink)]');
+          link.classList.remove('text-[var(--ink-soft)]');
+          if (indicator) indicator.style.opacity = '1';
+        } else {
+          link.classList.remove('text-[var(--ink)]');
+          link.classList.add('text-[var(--ink-soft)]');
+          if (indicator) indicator.style.opacity = '0';
+        }
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupScrollspy);
+  } else {
+    setupScrollspy();
+  }
+</script>
