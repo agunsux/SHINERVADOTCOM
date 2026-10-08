@@ -16,7 +16,7 @@ Official parent-company website for Shinerva — Building Digital Ecosystems.
 
 ## Contact Mailbox Provisioning
 
-The website references `contact@shinerva.com` as the official corporate contact address. Mailbox provisioning and MX/SPF/DKIM/DMARC routing must be configured at the domain DNS and mail server level.
+The website references `info@shinerva.com` as the official corporate contact address. Mailbox provisioning and MX/SPF/DKIM/DMARC routing must be configured at the domain DNS and mail server level.
 
 ## Development & Build
 
